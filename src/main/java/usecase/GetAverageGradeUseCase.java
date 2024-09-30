@@ -19,6 +19,7 @@ public final class GetAverageGradeUseCase {
      * @param course The course.
      * @return The average grade.
      */
+    @SuppressWarnings("checkstyle:EmptyStatement")
     public float getAverageGrade(String course) {
         // Call the API to get usernames of all your team members
         float sum = 0;
@@ -29,11 +30,14 @@ public final class GetAverageGradeUseCase {
         // TODO Task 3a: Complete the logic of calculating the average course grade for
         //              your team members. Hint: the getGrades method might be useful.
 
-        String[] listOfUsernames = {};
-        gradeDataBase.getGrade(, 207)
-        if (count == 0) {
-            return 0;
+        String[] listOfUsernames = team.getMembers();
+        int i;
+        for (i = 0; i < listOfUsernames.length; i++) {
+            Grade currGrade = gradeDataBase.getGrade(listOfUsernames[i], course);
+            sum += currGrade.getGrade();
+            count++;
         }
+
         return sum / count;
     }
 }
